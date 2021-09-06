@@ -22,7 +22,7 @@ try {
       issue_number: github.context.issue.number,
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
-      body: message,
+      body: “123”,
     });
   }
 } catch (error) {
