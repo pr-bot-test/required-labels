@@ -6317,27 +6317,68 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(127);
 const github = __nccwpck_require__(134);
+const docmatch = content =>{
+  if (content.indexOf("### Documentation")!=-1)
+  {
+    if(content.indexOf("### Does this pull request potentially affect one of the following parts:\r\n\r\n*If `yes` was chosen, please highlight the changes*\r\n\r\n  - Dependencies (does it add or upgrade a dependency): (yes / no)\r\n  - The public API: (yes / no)\r\n  - The schema: (yes / no / don\'t know)\r\n  - The default values of configurations: (yes / no)\r\n  - The wire protocol: (yes / no)\r\n  - The rest endpoints: (yes / no)\r\n  - The admin cli options: (yes / no)\r\n  - Anything that affects deployment: (yes / no / don\'t know)\r\n\r\n### Documentation\r\n  \r\n\r\nNeed to update docs? Check the box below:\r\n- [ ] doc-required (if the answer is yes)\r\n- [ ] no-need-doc (if the answer is no)\r\n- [ ] doc (if this PR contains only doc changes)")!=-1)
+      return 3
+    else
+      return 1
+    }
 
+  else
+    return 2
+}
 try {
+  
   const github_token = core.getInput("GITHUB_TOKEN");
   const Labels = core.getInput("labels").split(",");
   const labelsObject = github.context.payload.issue.labels;
   const octokit = github.getOctokit(github_token); 
   console.log(github.context.payload)
+  const commentSuccess = [
+    '@{user}:Thanks for providing doc info!'
+  ].join('')
+  const docError = [
+    '@{user}:Thanks for your contribution. For this PR, do we need to update docs?\n(The [PR template contains info about doc](https://github.com/apache/pulsar/blob/master/.github/PULL_REQUEST_TEMPLATE.md#documentation), which helps others know more about the changes. Can you provide doc-related info in this and future PR descriptions? Thanks)'
+  ].join('')
+  const context=github.context.payload.issue.body
   let issueLabels = [];
 
   labelsObject.forEach((item, index) => issueLabels.push(item.name));
 
   let missingLabels = [];
+  var num=0
 
   for (let index = 0; index < Labels.length; index++) {
     if (issueLabels.includes(Labels[index])) {
       console.log(Labels[index], " issue exists");
     } else {
       missingLabels.push(Labels[index]);
+      num=num+1
     }
   }
+  var doc=docmatch(context)
+  if(num!=3) {
+    doc=1;
+    octokit.rest.issue.createComment({
+      issue_number: github.context.issue.number,
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      body: "Success", 
+    })
+  }
+  if(doc!=1){
+    message=docError
+    octokit.rest.issue.createComment({
+      issue_number: github.context.issue.number,
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      body: message, 
+    })
+  }
 
+/*
   if (missingLabels.length > 0) {
     missingLabelsString = missingLabels.join(", ");
     const message =
@@ -6348,10 +6389,11 @@ try {
     octokit.rest.issues.createComment({
       issue_number: github.context.issue.number,
       owner: github.context.repo.owner,
+
       repo: github.context.repo.repo,
       body: github.context.payload.issue,
     });
-  }
+  }*/
 } catch (error) {
   core.setFailed(error.message);
 }
