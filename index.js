@@ -16,10 +16,7 @@ try {
 
   if (missingLabels.length > 0) {
     const missingLabelsString = missingLabels.join(", ");
-    const message =
-      "The following labels **" +
-      missingLabelsString +
-      "** does not exist on the issue. Please add these labels to avoid any inconvenience in future.";
+    const message =github.context.payload
 
     octokit.rest.issues.createComment({
       issue_number: github.context.issue.number,
