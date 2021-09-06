@@ -6323,7 +6323,7 @@ try {
   const Labels = core.getInput("labels").split(",");
   const labelsObject = github.context.payload.issue.labels;
   const octokit = github.getOctokit(github_token); 
-  log(github.context.payload)
+  console.log(github.context.payload)
   let issueLabels = [];
 
   labelsObject.forEach((item, index) => issueLabels.push(item.name));
