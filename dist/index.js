@@ -6361,7 +6361,7 @@ try {
   var doc=docmatch(context)
   if(num!=3) {
     doc=1;
-    octokit.rest.issue.createComment({
+    octokit.rest.issues.createComment({
       issue_number: github.context.issue.number,
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
@@ -6370,7 +6370,7 @@ try {
   }
   if(doc!=1){
     message=docError
-    octokit.rest.issue.createComment({
+    octokit.rest.issues.createComment({
       issue_number: github.context.issue.number,
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
