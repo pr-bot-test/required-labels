@@ -6369,17 +6369,17 @@
       })
     }
     if(num==3){
-      console.log(github.context.payload)
+      console.log(github.context.issue.payload)
       console.log("------------------------------------------")
-      console.log(github.context.payload.user)
-      message=(docError,{user:github.context.payload.user.login})
+      console.log(github.context.payload.issue.user)
+      message=(docError,{user:github.context.payload.issue.user.login})
       octokit.rest.issues.createComment({
         issue_number: github.payload.issue.number,
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         body: message, 
       })
-    }
+    }。
   
   /*
     if (missingLabels.length > 0) {
