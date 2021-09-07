@@ -6369,9 +6369,11 @@
       })
     }
     if(num==3){
-      console.log(github.context.issue.payload)
+      console.log(github.context.issue)
       console.log("------------------------------------------")
       console.log(github.context.payload.issue.user)
+      console.log("------------------------------------------")
+      console.log(github.context.payload.issue.user.login)
       message=(docError,{user:github.context.payload.issue.user.login})
       octokit.rest.issues.createComment({
         issue_number: github.payload.issue.number,
