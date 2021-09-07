@@ -6374,7 +6374,7 @@
       console.log(github.context.payload.issue.user)
       console.log("------------------------------------------")
       const user1=github.context.payload.issue.user.login
-      message=(docError,{user:user1})
+      message=format(docError,{user:user1})
       console.log(message)
       octokit.rest.issues.createComment({
         issue_number:github.context.issue.number,
