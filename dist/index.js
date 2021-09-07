@@ -6379,7 +6379,7 @@
         repo: github.context.repo.repo,
         body: message, 
       })
-    }。
+    }
   
   /*
     if (missingLabels.length > 0) {
