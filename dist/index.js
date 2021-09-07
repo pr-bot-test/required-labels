@@ -6372,7 +6372,7 @@
       console.log(github.context.issue.payload)
       console.log("------------------------------------------")
       console.log(github.context.payload.issue.user)
-      message=(docError,{user:github.context.payload.issue.user.login})
+      message=(docError,{user:github.context.issue.user.login})
       octokit.rest.issues.createComment({
         issue_number: github.payload.issue.number,
         owner: github.context.repo.owner,
