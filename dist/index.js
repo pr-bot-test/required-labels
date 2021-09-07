@@ -6320,7 +6320,7 @@ const github = __nccwpck_require__(134);
 const docmatch = content =>{
   if (content.indexOf("### Documentation")!=-1)
   {
-    if(content.indexOf("### Does this pull request potentially affect one of the following parts:\r\n\r\n*If `yes` was chosen, please highlight the changes*\r\n\r\n  - Dependencies (does it add or upgrade a dependency): (yes / no)\r\n  - The public API: (yes / no)\r\n  - The schema: (yes / no / don\'t know)\r\n  - The default values of configurations: (yes / no)\r\n  - The wire protocol: (yes / no)\r\n  - The rest endpoints: (yes / no)\r\n  - The admin cli options: (yes / no)\r\n  - Anything that affects deployment: (yes / no / don\'t know)\r\n\r\n### Documentation\r\n  \r\n\r\nNeed to update docs? Check the box below:\r\n- [ ] doc-required (if the answer is yes)\r\n- [ ] no-need-doc (if the answer is no)\r\n- [ ] doc (if this PR contains only doc changes)")!=-1)
+    if(content.indexOf("'### Documentation\r\n\r\n\r\nNeed to update docs? Check the box below:\r\n- [ ] `doc-required` (if the answer is yes)\r\n- [ ] `no-need-doc` (if the answer is no)\r\n- [ ] `doc` (if this PR contains only doc changes)\r\n' "
       return 3
     else
       return 1
