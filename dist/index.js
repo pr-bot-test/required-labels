@@ -6375,7 +6375,7 @@
       console.log(github.context.payload.issue.user)
       console.log("------------------------------------------")
       const user1=github.context.payload.issue.user.login
-      message=format(docError,{user:user1})
+      message="@"+user1+":Thanks for your contribution. For this PR, do we need to update docs?\n(The [PR template contains info about doc](https://github.com/apache/pulsar/blob/master/.github/PULL_REQUEST_TEMPLATE.md#documentation), which helps others know more about the changes. Can you provide doc-related info in this and future PR descriptions? Thanks)"
       console.log(message)
       octokit.rest.issues.createComment({
         issue_number:github.context.issue.number,
