@@ -6320,7 +6320,7 @@ const github = __nccwpck_require__(134);
 const docmatch = content =>{
   if (content.indexOf("### Documentation")!=-1)
   {
-    if(content.indexOf("'Need to update docs? Check the box below:\r\n- [ ] `doc-required` (if the answer is yes)\r\n- [ ] `no-need-doc` (if the answer is no)\r\n- [ ] `doc` (if this PR contains only doc changes)\r\n' "
+    if(content.indexOf('Need to update docs? Check the box below:\r\n- [ ] `doc-required` (if the answer is yes)\r\n- [ ] `no-need-doc` (if the answer is no)\r\n- [ ] `doc` (if this PR contains only doc changes)\r\n')
       return 3
     else
       return 1
