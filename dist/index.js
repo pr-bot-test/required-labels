@@ -6317,7 +6317,6 @@
   (() => {
   const core = __nccwpck_require__(127);
   const github = __nccwpck_require__(134);
-  const format = require('string-template')
   const docmatch = content =>{
     if (content.indexOf("### Documentation")!=-1)
     {
