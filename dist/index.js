@@ -6382,6 +6382,13 @@
         repo: github.context.repo.repo,
         body: message, 
       })
+      octokit.rest.issue.addLabels({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.payload.issue.number,
+        labels:"doc-info-miss"
+
+      })
     }
   
   /*
@@ -6395,7 +6402,6 @@
       octokit.rest.issues.createComment({
         issue_number: github.context.issue.number,
         owner: github.context.repo.owner,
-  
         repo: github.context.repo.repo,
         body: github.context.payload.issue,
       });
