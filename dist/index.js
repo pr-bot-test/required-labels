@@ -6369,7 +6369,7 @@ try {
     })
   }
   if(doc!=1){
-    message=docError
+    message=(docError,{user:github.context.user.login})
     octokit.rest.issues.createComment({
       issue_number: github.context.issue.number,
       owner: github.context.repo.owner,
