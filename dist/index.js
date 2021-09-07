@@ -6371,13 +6371,13 @@
     if(num==3){
       console.log(github.context.issue)
       console.log("------------------------------------------")
-      console.log(github.context.payload.issue.user)
+      console.log(github.context.issue.user)
       console.log("------------------------------------------")
-      console.log(github.context.payload.issue.user.login)
-      const user1=github.context.payload.issue.user.login
+      console.log(github.context.issue.user.login)
+      const user1=github.context.issue.user.login
       message=(docError,{user:user1})
       octokit.rest.issues.createComment({
-        issue_number: github.payload.issue.number,
+        issue_number:github.context.issue.number,
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         body: message, 
