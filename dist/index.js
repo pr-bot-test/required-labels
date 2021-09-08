@@ -6372,7 +6372,7 @@
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         issue_number: github.context.issue.number,
-        labels: ['doc-info-missing'],
+        name: 'doc-info-missing',
     });
       octokit.rest.issues.createComment({
         issue_number: github.context.issue.number,
