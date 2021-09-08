@@ -6384,6 +6384,15 @@
       })
 
     }
+    if(num==3){
+      console.log("add missinglabel")
+      octokit.issues.addLabels({
+        owner,
+        repo,
+        issue_number,
+        labels: "doc-info-missing",
+    });
+   }
   
   /*
     if (missingLabels.length > 0) {
