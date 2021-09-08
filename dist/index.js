@@ -6349,7 +6349,8 @@
   
     let missingLabels = [];
     var num=0
-  
+    console.log(Labels)
+    console.log(issueLabels)
     for (let index = 0; index < Labels.length; index++) {
       if (issueLabels.includes(Labels[index])) {
         console.log(Labels[index], " issue exists");
