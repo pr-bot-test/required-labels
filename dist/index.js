@@ -6387,9 +6387,9 @@
     if(num==3){
       console.log("add missinglabel")
       octokit.rest.issues.addLabels({
-        owner,
-        repo,
-        issue_number,
+        owner: github.context.repo.owner,,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
         labels: "doc-info-missing",
     });
    }
