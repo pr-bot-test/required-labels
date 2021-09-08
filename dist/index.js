@@ -6334,8 +6334,15 @@
     const github_token = core.getInput("GITHUB_TOKEN");
     const Labels = core.getInput("labels").split(",");
     const labelsObject = github.context.payload.issue.labels;
+    const user1=github.context.payload.issue.user.login
     const octokit = github.getOctokit(github_token); 
     console.log(github.context.payload)
+    octokit.rest.issues.addAssignees({
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: github.context.issue.number,
+      assignees:user1,
+  });
     const commentSuccess = [
       '@{user}:Thanks for providing doc info!'
     ].join('')
@@ -6360,8 +6367,13 @@
       }
     }
     var doc=docmatch(context)
-    if(num!=3) {
-      doc=1;
+    if(num!=3 && issueLabels.includes("doc-info-missing")) {
+      octokit.rest.issues.removeLabel({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+        labels: ['doc-info-missing'],
+    });
       octokit.rest.issues.createComment({
         issue_number: github.context.issue.number,
         owner: github.context.repo.owner,
@@ -6369,12 +6381,11 @@
         body: "Success", 
       })
     }
-    if(num==3){
+    if(num==3 && !issueLabels.includes("doc-info-missing")){
       console.log(github.context.issue)
       console.log("------------------------------------------")
       console.log(github.context.payload.issue.user)
       console.log("------------------------------------------")
-      const user1=github.context.payload.issue.user.login
       message="@"+user1+":Thanks for your contribution. For this PR, do we need to update docs?\n(The [PR template contains info about doc](https://github.com/apache/pulsar/blob/master/.github/PULL_REQUEST_TEMPLATE.md#documentation), which helps others know more about the changes. Can you provide doc-related info in this and future PR descriptions? Thanks)"
       console.log(message)
       octokit.rest.issues.createComment({
@@ -6385,7 +6396,7 @@
       })
 
     }
-    if(num==3){
+    if(num==3 && !issueLabels.includes("doc-info-missing")){
       console.log("add missinglabel")
       octokit.rest.issues.addLabels({
         owner: github.context.repo.owner,
