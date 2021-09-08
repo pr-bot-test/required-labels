@@ -6382,13 +6382,7 @@
         repo: github.context.repo.repo,
         body: message, 
       })
-      octokit.rest.issue.addLabels({
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        issue_number: github.payload.issue.number,
-        labels:"doc-info-miss"
 
-      })
     }
   
   /*
