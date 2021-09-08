@@ -6386,7 +6386,7 @@
     }
     if(num==3){
       console.log("add missinglabel")
-      octokit.issues.addLabels({
+      octokit.rest.issues.addLabels({
         owner,
         repo,
         issue_number,
